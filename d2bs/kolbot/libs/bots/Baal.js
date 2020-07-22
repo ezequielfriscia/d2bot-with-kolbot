@@ -196,14 +196,13 @@ function Baal() {
 		say(string);
 	};
 
-	Town.doChores();
-	Pather.useWaypoint(Config.RandomPrecast ? "random" : 129);
-	Precast.doPrecast(true);
-
-	if (me.area !== 129) {
+	if (me.area < 129 && me.area > 130) {	// When pushing Baal.js from Worldstone.js, it will go straight to Throne at finish.
+		Town.doChores();
 		Pather.useWaypoint(129);
 	}
 
+	Precast.doPrecast(true);
+	
 	if (!Pather.moveToExit([130, 131], true)) {
 		throw new Error("Failed to move to Throne of Destruction.");
 	}
